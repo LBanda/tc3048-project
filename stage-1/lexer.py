@@ -17,6 +17,32 @@ class Tag(IntEnum):
 	## RESERVED WORDS ##
 	VAR = 457
 	FORWARD = 458
+	FD = 458
+	BACKWARD = 459
+	BK = 459
+	RIGHT = 460
+	RT = 460
+	LEFT = 461
+	LT = 461
+	SETX = 462
+	SETY = 463
+	SETXY = 464
+	CLEAR = 467
+	CLS = 467
+	CIRCLE = 468
+	ARC = 469
+	PENUP = 470
+	PU = 470
+	PENDOWN = 471
+	PD = 471
+	COLOR = 472
+	PENWIDTH = 473
+	PRINT = 474
+	WHILE = 475
+	IF = 476
+	IFELSE = 477
+	OR = 478
+	AND = 479
 	
 class Token:
 	__tag = Tag.EOF
@@ -70,6 +96,33 @@ class Lexer:
 		self.__words["FORWARD"] = Token(Tag.FORWARD, "FORWARD")
 		self.__words["FD"] = Token(Tag.FORWARD, "FORWARD")
 		## ADD ALL RESERVED WORDS ##
+		self.__words["BACKWARD"] = Token(Tag.BACKWARD, "BACKWARD")
+		self.__words["BK"] = Token(Tag.BACKWARD, "BACKWARD")
+		self.__words["RIGHT"] = Token(Tag.RIGHT, "RIGHT")
+		self.__words["RT"] = Token(Tag.RIGHT, "RIGHT")
+		self.__words["LEFT"] = Token(Tag.LEFT, "LEFT")
+		self.__words["LT"] = Token(Tag.LEFT, "LEFT")
+		self.__words["SETX"] = Token(Tag.SETX, "SETX")
+		self.__words["SETY"] = Token(Tag.SETY, "SETY")
+		self.__words["SETXY"] = Token(Tag.SETXY, "SETXY")
+		self.__words["CLEAR"] = Token(Tag.CLEAR, "CLEAR")
+		self.__words["CLS"] = Token(Tag.CLEAR, "CLS")
+		self.__words["CIRCLE"] = Token(Tag.CIRCLE, "CIRCLE")
+		self.__words["ARC"] = Token(Tag.ARC, "ARC")
+		self.__words["PENUP"] = Token(Tag.PENUP, "PENUP")
+		self.__words["PU"] = Token(Tag.PENUP, "PENUP")
+		self.__words["PENDOWN"] = Token(Tag.PENDOWN, "PENDOWN")
+		self.__words["PD"] = Token(Tag.PENDOWN, "PENDOWN")
+		self.__words["COLOR"] = Token(Tag.COLOR, "COLOR")
+		self.__words["PENWIDTH"] = Token(Tag.PENWIDTH, "PENWIDTH")
+		self.__words["PRINT"] = Token(Tag.PRINT, "PRINT")
+		self.__words["WHILE"] = Token(Tag.WHILE, "WHILE")
+		self.__words["IF"] = Token(Tag.IF, "IF")
+		self.__words["IFELSE"] = Token(Tag.IFELSE, "IFELSE")
+		self.__words["OR"] = Token(Tag.OR, "OR")
+		self.__words["AND"] = Token(Tag.AND, "AND")
+		
+		
 
 	def read(self):
 		self.__peek = self.__input.read(1)
@@ -103,7 +156,7 @@ class Lexer:
 				return Token(ord('<'))
 		elif self.__peek == '>':
 			if self.readch('='):
-				return Word(Tag.GEQ, ">=")
+				return Token(Tag.GEQ, ">=")
 			else:
 				return Token(ord('>'))
 		elif self.__peek == '#':
